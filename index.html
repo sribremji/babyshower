@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pratheepa's Baby Shower — April 12</title>
+<meta name="description" content="You're warmly invited to celebrate Pratheepa's Baby Shower on April 12 at Miththam, Thiruvidanthai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Cormorant:ital,wght@0,300;1,300&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ══ RESET & ROOT ══ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --void:#06020c;
+  --deep:#0f0520;
+  --violet:#7c3aed;
+  --lilac:#c084fc;
+  --bloom:#f0abca;
+  --cream:#fdf8f2;
+  --gold:#f59e0b;
+  --rose:#f43f5e;
+  --expo:cubic-bezier(0.16,1,0.3,1);
+  --smooth:cubic-bezier(0.87,0,0.13,1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:#fff;font-family:'Outfit',sans-serif;cursor:none;overflow-x:hidden}
+
+/* ══ CURSOR ══ */
+#cur{position:fixed;width:8px;height:8px;background:#fff;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .3s var(--expo),height .3s var(--expo)}
+#cur-r{position:fixed;width:34px;height:34px;border:1px solid rgba(255,255,255,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .35s var(--expo),height .35s var(--expo),border-color .3s}
+body.hov #cur{width:22px;height:22px}
+body.hov #cur-r{width:58px;height:58px;border-color:rgba(255,255,255,.55)}
+
+/* ══ PROGRESS BAR ══ */
+#pbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--violet),var(--lilac),var(--bloom));width:0%;z-index:500;transition:width .08s linear}
+
+/* ══ NAV DOTS ══ */
+#nav{position:fixed;right:26px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:11px;z-index:300}
+.nd{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .4s var(--expo);position:relative}
+.nd.on{background:#fff;transform:scale(1.7)}
+.nd:hover{background:rgba(255,255,255,.6)}
+.nd-label{position:absolute;right:16px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);opacity:0;pointer-events:none;transition:opacity .3s;background:rgba(0,0,0,.4);padding:3px 8px;border-radius:20px;backdrop-filter:blur(8px)}
+.nd:hover .nd-label{opacity:1}
+
+/* ══ SECTION BASE ══ */
+section{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+/* ══ SCROLL REVEAL SYSTEM ══ */
+.rv{opacity:0;transform:translateY(36px);transition:opacity 1s var(--expo),transform 1s var(--expo)}
+.rv.left{transform:translateX(-44px)}
+.rv.right{transform:translateX(44px)}
+.rv.sc{transform:scale(.93)}
+.rv.up{opacity:1;transform:none!important}
+
+/* ════════════════════════════════════════
+   S1 — HERO
+════════════════════════════════════════ */
+#sh{background:var(--void)}
+#hc{position:absolute;inset:0;width:100%;height:100%}
+.orb{position:absolute;border-radius:50%;pointer-events:none;animation:orbf var(--d,14s) ease-in-out infinite alternate}
+@keyframes orbf{0%{transform:translate(0,0) scale(1)}100%{transform:translate(var(--tx,40px),var(--ty,-30px)) scale(1.1)}}
+
+.hero-wrap{position:relative;z-index:5;text-align:center;padding:40px 24px}
+.hero-eye{font-size:10px;font-weight:300;letter-spacing:7px;text-transform:uppercase;color:rgba(255,190,215,.4);margin-bottom:26px;opacity:0;animation:fu 1.2s var(--expo) .3s both}
+#hero-name{font-family:'DM Serif Display',serif;font-size:clamp(52px,8.5vw,118px);font-weight:400;line-height:.9;letter-spacing:-2px;color:#fff}
+#hero-name .ch{display:inline-block;opacity:0;transform:translateY(55px);animation:chu .7s var(--expo) both}
+.hero-italic{font-style:italic}
+.hero-tag{font-family:'Cormorant',serif;font-style:italic;font-size:clamp(15px,2.2vw,22px);font-weight:300;color:rgba(255,210,225,.4);margin-top:22px;letter-spacing:2px;opacity:0;animation:fu 1.2s var(--expo) 1.5s both}
+.hero-div{display:flex;align-items:center;gap:18px;margin:30px auto;width:fit-content;opacity:0;animation:fu 1.2s var(--expo) 1.7s both}
+.hero-div span{display:block;height:1px;width:70px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2))}
+.hero-div span:last-child{transform:scaleX(-1)}
+.hero-meta{font-size:11px;font-weight:300;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.28);line-height:2.5;opacity:0;animation:fu 1.2s var(--expo) 1.9s both}
+.hero-scroll{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:9px;opacity:0;animation:fu 1.2s var(--expo) 2.4s both}
+.hero-scroll span{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.22)}
+.scroll-line{width:1px;height:44px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.3));animation:lg 2s ease-in-out infinite}
+
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes chu{from{opacity:0;transform:translateY(55px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lg{0%,100%{opacity:0;transform:scaleY(0) translateY(-50%)}50%{opacity:1;transform:scaleY(1) translateY(0)}}
+
+/* ════════════════════════════════════════
+   S2 — DAD
+════════════════════════════════════════ */
+#sd{background:linear-gradient(160deg,#0c0704 0%,#1a1005 100%);padding:90px 24px}
+.msg-wrap{max-width:780px;width:100%;padding:0 10px}
+.msg-from{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,185,70,.4);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.msg-from::after,.msg-from-r::before{content:'';flex:1;height:1px}
+.msg-from::after{background:linear-gradient(90deg,rgba(255,185,70,.15),transparent)}
+.msg-from-r{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,115,165,.4);margin-bottom:22px;display:flex;align-items:center;gap:14px;flex-direction:row-reverse}
+.msg-from-r::before{background:linear-gradient(270deg,rgba(255,115,165,.15),transparent)}
+.msg-row{display:flex;align-items:flex-start;gap:20px}
+.msg-row-r{display:flex;align-items:flex-start;gap:20px;flex-direction:row-reverse}
+.av{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;margin-top:6px}
+.av-d{background:radial-gradient(circle at 35% 35%,rgba(255,210,100,.12),rgba(200,120,30,.07));border:1px solid rgba(255,185,70,.18)}
+.av-m{background:radial-gradient(circle at 35% 35%,rgba(255,180,210,.12),rgba(200,80,130,.07));border:1px solid rgba(255,115,165,.18)}
+.bub-d{background:rgba(255,185,70,.045);border:1px solid rgba(255,185,70,.11);border-radius:4px 18px 18px 18px;padding:30px 36px;flex:1}
+.bub-m{background:rgba(255,115,165,.045);border:1px solid rgba(255,115,165,.11);border-radius:18px 4px 18px 18px;padding:30px 36px;flex:1;text-align:right}
+.bub-text{font-family:'Cormorant',serif;font-style:italic;font-size:clamp(17px,2.2vw,22px);line-height:1.9;min-height:60px}
+.bub-text-d{color:rgba(255,245,220,.84)}
+.bub-text-m{color:rgba(255,228,238,.84)}
+.bub-sign{margin-top:22px;font-size:10px;letter-spacing:4px;text-transform:uppercase}
+.sign-d{color:rgba(255,185,70,.38)}
+.sign-m{color:rgba(255,135,175,.38)}
+
+/* ════════════════════════════════════════
+   S3 — MOM
+════════════════════════════════════════ */
+#sm{background:linear-gradient(160deg,#0d0308 0%,#1c0610 100%);padding:90px 24px}
+
+/* ════════════════════════════════════════
+   S4 — COUNTDOWN
+════════════════════════════════════════ */
+#sco{background:var(--void)}
+.co-wrap{text-align:center;z-index:5;padding:40px 24px}
+.co-eye{font-size:10px;letter-spacing:7px;text-transform:uppercase;color:rgba(255,200,120,.35);margin-bottom:36px}
+.co-grid{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.co-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:32px 28px 22px;min-width:108px;text-align:center;position:relative;overflow:hidden}
+.co-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(192,132,252,.06) 0%,transparent 60%);pointer-events:none}
+.co-n{font-family:'DM Serif Display',serif;font-size:clamp(42px,6vw,78px);color:#fff;line-height:1;display:block}
+.co-l{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.26);margin-top:10px;display:block}
+.co-tag{margin-top:38px;font-family:'Cormorant',serif;font-style:italic;font-size:19px;color:rgba(255,255,255,.28);letter-spacing:1px}
+
+/* ════════════════════════════════════════
+   S5 — NIGHT SCENE
+════════════════════════════════════════ */
+#sn{background:#020208;padding:0}
+#nc{position:absolute;inset:0;width:100%;height:100%}
+.night-wrap{position:relative;z-index:5;text-align:center;padding:40px}
+.night-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(30px,5vw,60px);color:rgba(255,255,255,.55);line-height:1.15;margin-bottom:16px}
+.night-sub{font-size:10px;letter-spacing:7px;text-transform:uppercase;color:rgba(255,255,255,.18)}
+
+/* ════════════════════════════════════════
+   S6 — DETAILS
+════════════════════════════════════════ */
+#sde{background:var(--cream)}
+.de-wrap{max-width:960px;width:100%;padding:90px 24px;z-index:5}
+.de-hdr{text-align:center;margin-bottom:56px}
+.de-eye{font-size:10px;letter-spacing:6px;text-transform:uppercase;color:rgba(100,65,30,.38);margin-bottom:14px}
+.de-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(34px,5vw,62px);color:#1a1008;line-height:1.1}
+.de-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.de-card{background:#fff;border-radius:22px;padding:34px 28px;border:1px solid rgba(0,0,0,.06);cursor:default;transition:transform .45s var(--expo),box-shadow .45s var(--expo);will-change:transform;perspective:800px}
+.de-card:hover{transform:translateY(-7px);box-shadow:0 24px 60px rgba(0,0,0,.09)}
+.de-icon{font-size:30px;margin-bottom:18px;display:block}
+.de-lbl{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(100,65,30,.38);margin-bottom:9px}
+.de-val{font-family:'DM Serif Display',serif;font-size:24px;color:#1a1008;line-height:1.2}
+.de-sub{font-size:12px;color:rgba(80,50,20,.45);margin-top:7px;line-height:1.6}
+
+/* ════════════════════════════════════════
+   S7 — GALLERY
+════════════════════════════════════════ */
+#sg{background:var(--void);padding:90px 24px}
+.ga-wrap{max-width:1020px;width:100%;z-index:5}
+.ga-hdr{text-align:center;margin-bottom:50px}
+.ga-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(32px,4.5vw,58px);color:#fff}
+.ga-sub{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.18);margin-top:14px}
+.ga-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ga-tile{border-radius:18px;overflow:hidden;aspect-ratio:1;position:relative;cursor:pointer;transition:transform .4s var(--expo)}
+.ga-tile:hover{transform:scale(1.03)}
+.ga-inner{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;clip-path:inset(0 100% 0 0);transition:clip-path 1.1s var(--expo)}
+.ga-tile.wipe .ga-inner{clip-path:inset(0 0% 0 0)}
+.ga-icon{font-size:40px;position:relative;z-index:2}
+.ga-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;position:relative;z-index:2}
+.ga-add{position:absolute;bottom:10px;right:10px;font-size:8px;letter-spacing:1px;color:rgba(255,255,255,.2);background:rgba(0,0,0,.35);padding:3px 8px;border-radius:10px}
+/* tile colours */
+.t1{background:linear-gradient(140deg,#160830,#3a1070)} .t1 .ga-lbl{color:rgba(200,160,255,.45)}
+.t2{background:linear-gradient(140deg,#1a0510,#5c1030)} .t2 .ga-lbl{color:rgba(255,160,200,.45)}
+.t3{background:linear-gradient(140deg,#0a1225,#1a3868)} .t3 .ga-lbl{color:rgba(150,200,255,.45)}
+.t4{background:linear-gradient(140deg,#0c1a05,#284a10)} .t4 .ga-lbl{color:rgba(150,220,130,.45)}
+.t5{background:linear-gradient(140deg,#1c1005,#4a2a0a)} .t5 .ga-lbl{color:rgba(255,200,130,.45)}
+.t6{background:linear-gradient(140deg,#080515,#1a1048)} .t6 .ga-lbl{color:rgba(180,160,255,.45)}
+.ga-note{text-align:center;margin-top:22px;font-size:10px;color:rgba(255,255,255,.18);letter-spacing:2px}
+
+/* ════════════════════════════════════════
+   S8 — MAP + RSVP
+════════════════════════════════════════ */
+#sr{background:#04020d;padding:90px 24px}
+.sr-wrap{max-width:940px;width:100%;z-index:5;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.map-h3{font-family:'DM Serif Display',serif;font-style:italic;font-size:30px;color:#fff;margin-bottom:8px}
+.map-p{font-size:12px;color:rgba(255,255,255,.28);line-height:1.8;margin-bottom:22px}
+.map-frame{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.07)}
+.map-frame iframe{display:block;width:100%;height:270px;border:none;filter:grayscale(20%) contrast(1.05) brightness(.9)}
+.map-link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:11px;color:rgba(192,132,252,.65);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .3s}
+.map-link:hover{color:rgba(192,132,252,1)}
+.map-link svg{flex-shrink:0}
+
+/* rsvp card */
+.rv-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:38px 34px;backdrop-filter:blur(24px)}
+.rv-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:30px;color:#fff;margin-bottom:6px}
+.rv-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.26);margin-bottom:30px}
+.rv-form{display:flex;flex-direction:column;gap:14px}
+.rv-inp{width:100%;padding:14px 20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;color:#fff;font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border-color .3s}
+.rv-inp:focus{border-color:rgba(192,132,252,.5)}
+.rv-inp::placeholder{color:rgba(255,255,255,.22)}
+.rv-opts{display:flex;gap:12px}
+.rv-opt{flex:1;padding:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;text-align:center;cursor:pointer;font-size:11px;color:rgba(255,255,255,.38);letter-spacing:2px;text-transform:uppercase;transition:all .3s;user-select:none}
+.rv-opt.sel{background:rgba(192,132,252,.14);border-color:rgba(192,132,252,.38);color:rgba(220,185,255,.9)}
+.rv-btn{padding:16px;border-radius:60px;background:linear-gradient(135deg,rgba(124,58,237,.48),rgba(192,132,252,.38));border:1px solid rgba(192,132,252,.32);color:#fff;font-family:'Outfit',sans-serif;font-size:11px;font-weight:300;letter-spacing:4px;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.rv-btn:hover{background:linear-gradient(135deg,rgba(124,58,237,.7),rgba(192,132,252,.6));border-color:rgba(192,132,252,.6);transform:translateY(-2px)}
+.rv-ty{display:none;text-align:center;padding:24px 0}
+.rv-ty h4{font-family:'DM Serif Display',serif;font-style:italic;font-size:28px;color:#fff;margin-bottom:12px}
+.rv-ty p{font-size:13px;color:rgba(255,255,255,.38);line-height:1.8}
+
+/* confetti */
+#cc{position:fixed;inset:0;pointer-events:none;z-index:999}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{background:var(--void);padding:48px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
+.ft-heart{font-size:22px;margin-bottom:14px;display:block;animation:hb 2s ease-in-out infinite alternate}
+@keyframes hb{0%{transform:scale(1)}100%{transform:scale(1.15)}}
+footer p{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.18);line-height:2.6}
+footer em{font-style:normal;color:rgba(192,132,252,.38)}
+
+/* ════════════════════════════════════════
+   MOBILE
+════════════════════════════════════════ */
+@media(max-width:768px){
+  #nav,#cur,#cur-r{display:none}
+  body{cursor:auto}
+  .sr-wrap{grid-template-columns:1fr}
+  .ga-grid{grid-template-columns:repeat(2,1fr)}
+  .co-grid{gap:10px}
+  .co-box{min-width:76px;padding:22px 16px 14px}
+  .bub-d,.bub-m{padding:20px}
+  .bub-text{font-size:16px}
+  .msg-row,.msg-row-r{flex-direction:column;gap:12px}
+  .rv-card{padding:26px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- cursor -->
+<div id="cur"></div>
+<div id="cur-r"></div>
+<!-- progress -->
+<div id="pbar"></div>
+<!-- confetti canvas -->
+<canvas id="cc"></canvas>
+
+<!-- ══ NAV DOTS ══ -->
+<div id="nav">
+  <div class="nd on" data-s="sh"><span class="nd-label">Home</span></div>
+  <div class="nd" data-s="sd"><span class="nd-label">From Prem</span></div>
+  <div class="nd" data-s="sm"><span class="nd-label">From Pratheepa</span></div>
+  <div class="nd" data-s="sco"><span class="nd-label">Countdown</span></div>
+  <div class="nd" data-s="sn"><span class="nd-label">Night Scene</span></div>
+  <div class="nd" data-s="sde"><span class="nd-label">Details</span></div>
+  <div class="nd" data-s="sg"><span class="nd-label">Gallery</span></div>
+  <div class="nd" data-s="sr"><span class="nd-label">RSVP</span></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     S1 · HERO
+══════════════════════════════════════ -->
+<section id="sh">
+  <canvas id="hc"></canvas>
+  <!-- orbs -->
+  <div class="orb" style="width:520px;height:520px;background:radial-gradient(circle,rgba(124,58,237,.32),transparent);top:-120px;left:-120px;--d:15s;--tx:50px;--ty:40px"></div>
+  <div class="orb" style="width:420px;height:420px;background:radial-gradient(circle,rgba(244,63,94,.18),transparent);bottom:-80px;right:-70px;--d:19s;--tx:-40px;--ty:-50px"></div>
+  <div class="orb" style="width:280px;height:280px;background:radial-gradient(circle,rgba(192,132,252,.22),transparent);top:42%;right:9%;--d:12s;--tx:30px;--ty:50px"></div>
+  <div class="orb" style="width:200px;height:200px;background:radial-gradient(circle,rgba(240,171,202,.18),transparent);top:18%;left:12%;--d:10s;--tx:-20px;--ty:30px"></div>
+
+  <div class="hero-wrap">
+    <div class="hero-eye">✦ &nbsp; A joyful celebration &nbsp; ✦</div>
+    <div id="hero-name">Pratheepa's<br><span class="hero-italic">Baby Shower</span></div>
+    <div class="hero-tag">A little miracle is on its way</div>
+    <div class="hero-div">
+      <span></span>🌸<span></span>
+    </div>
+    <div class="hero-meta">
+      April 12, 2026 &nbsp;·&nbsp; 10:00 AM<br>
+      Miththam &nbsp;·&nbsp; Thiruvidanthai, Tamil Nadu
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     S2 · DAD'S MESSAGE
+══════════════════════════════════════ -->
+<section id="sd">
+  <div class="msg-wrap">
+    <div class="msg-from rv left">— From Prem, the proud dad-to-be</div>
+    <div class="msg-row rv left" style="transition-delay:.18s">
+      <div class="av av-d">👨</div>
+      <div class="bub-d">
+        <div class="bub-text bub-text-d" id="dad-txt"></div>
+        <div class="bub-sign sign-d" style="margin-top:24px">— Prem</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     S3 · MOM'S MESSAGE
+══════════════════════════════════════ -->
+<section id="sm">
+  <div class="msg-wrap" style="text-align:right">
+    <div class="msg-from-r rv right">From Pratheepa, with all her heart —</div>
+    <div class="msg-row-r rv right" style="transition-delay:.18s">
+      <div class="av av-m">🤰</div>
+      <div class="bub-m">
+        <div class="bub-text bub-text-m" id="mom-txt"></div>
+        <div class="bub-sign sign-m" style="margin-top:24px">— Pratheepa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     S4 · COUNTDOWN
+══════════════════════════════════════ -->
+<section id="sco">
+  <div class="co-wrap">
+    <div class="co-eye rv">✦ &nbsp; The big day is approaching &nbsp; ✦</div>
+    <div class="co-grid rv" style="transition-delay:.2s">
+      <div class="co-box"><span class="co-n" id="cd">--</span><span class="co-l">Days</span></div>
+      <div class="co-box"><span class="co-n" id="ch">--</span><span class="co-l">Hours</span></div>
+      <div class="co-box"><span class="co-n" id="cm">--</span><span class="co-l">Minutes</span></div>
+      <div class="co-box"><span class="co-n" id="cs">--</span><span class="co-l">Seconds</span></div>
+    </div>
+    <div class="co-tag rv" style="transition-delay:.4s">until we celebrate Pratheepa &amp; her little one</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     S5 · NIGHT SCENE
+══════════════════════════════════════ -->
+<section id="sn">
+  <canvas id="nc"></canvas>
+  <div class="night-wrap rv sc">
+    <div class="night-title">A little soul,<br>quietly arriving…</div>
+    <div class="night-sub">April 12 &nbsp;·&nbsp; Miththam</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     S6 · DETAILS
+══════════════════════════════════════ -->
+<section id="sde">
+  <div class="de-wrap">
+    <div class="de-hdr">
+      <div class="de-eye rv">Save the Date</div>
+      <div class="de-title rv" style="transition-delay:.15s">Everything you need to know</div>
+    </div>
+    <div class="de-grid">
+      <div class="de-card rv" style="transition-delay:.05s">
+        <span class="de-icon">📅</span>
+        <div class="de-lbl">Date</div>
+        <div class="de-val">April 12, 2026</div>
+        <div class="de-sub">Saturday — a day to remember</div>
+      </div>
+      <div class="de-card rv" style="transition-delay:.15s">
+        <span class="de-icon">⏰</span>
+        <div class="de-lbl">Time</div>
+        <div class="de-val">10:00 AM</div>
+        <div class="de-sub">onwards — come &amp; celebrate</div>
+      </div>
+      <div class="de-card rv" style="transition-delay:.25s">
+        <span class="de-icon">📍</span>
+        <div class="de-lbl">Venue</div>
+        <div class="de-val">Miththam</div>
+        <div class="de-sub">Near Nithya Kalyana Perumal Temple<br>Thiruvidanthai, TN 603112</div>
+      </div>
+      <div class="de-card rv" style="transition-delay:.35s">
+        <span class="de-icon">🪷</span>
+        <div class="de-lbl">Occasion</div>
+        <div class="de-val">Baby Shower</div>
+        <div class="de-sub">Celebrating Pratheepa's new chapter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     S7 · GALLERY
+══════════════════════════════════════ -->
+<section id="sg">
+  <div class="ga-wrap">
+    <div class="ga-hdr">
+      <div class="ga-title rv">Moments of Joy</div>
+      <div class="ga-sub rv" style="transition-delay:.12s">A celebration worth remembering</div>
+    </div>
+    <div class="ga-grid">
+      <!-- To add real photos: change background of .ga-inner to: background:url('photo1.jpg') center/cover -->
+      <div class="ga-tile" style="transition-delay:.05s"><div class="ga-inner t1"><span class="ga-icon">🌙</span><span class="ga-lbl">Sweet Dreams</span></div><span class="ga-add">Add photo</span></div>
+      <div class="ga-tile" style="transition-delay:.15s"><div class="ga-inner t2"><span class="ga-icon">🌸</span><span class="ga-lbl">In Full Bloom</span></div><span class="ga-add">Add photo</span></div>
+      <div class="ga-tile" style="transition-delay:.25s"><div class="ga-inner t3"><span class="ga-icon">⭐</span><span class="ga-lbl">Starlit</span></div><span class="ga-add">Add photo</span></div>
+      <div class="ga-tile" style="transition-delay:.1s"><div class="ga-inner t4"><span class="ga-icon">🌿</span><span class="ga-lbl">New Life</span></div><span class="ga-add">Add photo</span></div>
+      <div class="ga-tile" style="transition-delay:.2s"><div class="ga-inner t5"><span class="ga-icon">🕯️</span><span class="ga-lbl">Warmth &amp; Light</span></div><span class="ga-add">Add photo</span></div>
+      <div class="ga-tile" style="transition-delay:.3s"><div class="ga-inner t6"><span class="ga-icon">💜</span><span class="ga-lbl">With Love</span></div><span class="ga-add">Add photo</span></div>
+    </div>
+    <div class="ga-note rv" style="transition-delay:.4s">✦ &nbsp; Replace tiles with your own photos by editing index.html &nbsp; ✦</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     S8 · MAP + RSVP
+══════════════════════════════════════ -->
+<section id="sr">
+  <div class="sr-wrap">
+    <!-- MAP -->
+    <div class="rv left">
+      <h3 class="map-h3">Find Us Here</h3>
+      <p class="map-p">Miththam, near Nithya Kalyana Perumal Temple<br>Thiruvidanthai, Tamil Nadu 603112</p>
+      <div class="map-frame">
+        <iframe
+          src="https://maps.google.com/maps?q=Nithya+Kalyana+Perumal+Temple,+Thiruvidanthai,+Tamil+Nadu+603112&output=embed&z=15"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <a class="map-link"
+         href="https://maps.google.com/maps?q=Nithya+Kalyana+Perumal+Temple,+Thiruvidanthai,+Tamil+Nadu+603112"
+         target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Get Directions →
+      </a>
+    </div>
+
+    <!-- RSVP -->
+    <div class="rv-card rv right" style="transition-delay:.22s">
+      <div class="rv-title">Will you join us?</div>
+      <div class="rv-sub">April 12 &nbsp;·&nbsp; 10:00 AM &nbsp;·&nbsp; Miththam</div>
+      <div class="rv-form" id="rvf">
+        <input class="rv-inp" type="text" placeholder="Your Name" id="rn">
+        <input class="rv-inp" type="tel" placeholder="Phone / WhatsApp" id="rp">
+        <div class="rv-opts">
+          <div class="rv-opt sel" id="ry" onclick="pick('y')">I'll be there 🎉</div>
+          <div class="rv-opt" id="rno" onclick="pick('n')">Can't make it</div>
+        </div>
+        <button class="rv-btn" onclick="submitRv()">Send with Love →</button>
+      </div>
+      <div class="rv-ty" id="rvty">
+        <h4 id="ty-h">Thank you! 🌸</h4>
+        <p id="ty-p">We're so glad you'll be there. See you on April 12th with loads of love and joy!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <span class="ft-heart">🌸</span>
+  <p>With love &amp; joy</p>
+  <p><em>Pratheepa &amp; Prem</em></p>
+  <p>April 12, 2026 &nbsp;·&nbsp; 10:00 AM &nbsp;·&nbsp; Miththam, Thiruvidanthai</p>
+</footer>
+
+<script>
+/* ══ CURSOR ══ */
+const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function lc(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(lc)})();
+document.querySelectorAll('a,button,.nd,.de-card,.ga-tile,.rv-opt').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+
+/* ══ SCROLL PROGRESS & NAV ══ */
+const allSections=document.querySelectorAll('section');
+const nds=document.querySelectorAll('.nd');
+window.addEventListener('scroll',()=>{
+  document.getElementById('pbar').style.width=(scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
+  let act=0;
+  allSections.forEach((s,i)=>{if(s.getBoundingClientRect().top<innerHeight*.5)act=i});
+  nds.forEach((n,i)=>n.classList.toggle('on',i===act));
+});
+nds.forEach(n=>n.addEventListener('click',()=>document.getElementById(n.dataset.s).scrollIntoView({behavior:'smooth'})));
+
+/* ══ HERO LETTER SPLIT ══ */
+(()=>{
+  const el=document.getElementById('hero-name');
+  const parts=el.innerHTML.split('<br>');
+  el.innerHTML='';
+  let delay=0.6;
+  parts.forEach((part,pi)=>{
+    const div=document.createElement('div');
+    const frag=document.createElement('span');
+    // handle inner spans (for italic class)
+    const tmp=document.createElement('div');
+    tmp.innerHTML=part;
+    const isItalic=tmp.querySelector('.hero-italic');
+    const text=tmp.textContent;
+    const italic=!!isItalic;
+    [...text].forEach(ch=>{
+      const s=document.createElement('span');
+      s.className='ch'+(italic?' hero-italic':'');
+      s.textContent=ch===' '?'\u00A0':ch;
+      s.style.animationDelay=delay+'s';
+      delay+=0.048;
+      div.appendChild(s);
+    });
+    el.appendChild(div);
+    if(pi<parts.length-1)delay+=0.08;
+  });
+})();
+
+/* ══ INTERSECTION OBSERVER ══ */
+let dadDone=false,momDone=false;
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    if(e.target.classList.contains('rv'))e.target.classList.add('up');
+    if(e.target.id==='sd'&&!dadDone){dadDone=true;setTimeout(()=>typewrite(document.getElementById('dad-txt'),DAD,0),400)}
+    if(e.target.id==='sm'&&!momDone){momDone=true;setTimeout(()=>typewrite(document.getElementById('mom-txt'),MOM,0),400)}
+    if(e.target.classList.contains('ga-tile')){
+      const d=parseFloat(e.target.style.transitionDelay||0)*1000;
+      setTimeout(()=>e.target.classList.add('wipe'),d);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.22});
+document.querySelectorAll('.rv,#sd,#sm,.ga-tile').forEach(el=>io.observe(el));
+
+/* ══ TYPEWRITER ══ */
+const DAD=`"With great joy and a heart full of gratitude, I warmly invite you to celebrate the most beautiful chapter of our lives.\n\nPratheepa has carried this journey with so much love, strength, and grace — she deserves every blessing and every bit of warmth this day can bring.\n\nHaving you with us on April 12th would make this celebration truly complete. Please do join us — your presence means everything."`;
+
+const MOM=`"Having you beside me on this day would fill my heart beyond what words can hold.\n\nYou are someone I deeply cherish, and your love, your blessings, and your presence matter more to me than anything else as I step into this beautiful new journey of motherhood.\n\nCome, celebrate with me, and let your being there make this the most unforgettable day. 🌸"`;
+
+function typewrite(el,text,i){
+  if(i>text.length)return;
+  el.innerHTML=text.slice(0,i).replace(/\n/g,'<br>');
+  setTimeout(()=>typewrite(el,text,i+1),16);
+}
+
+/* ══ COUNTDOWN ══ */
+function tick(){
+  const t=new Date('2026-04-12T10:00:00+05:30'),n=new Date(),diff=t-n;
+  if(diff<=0){['cd','ch','cm','cs'].forEach(id=>document.getElementById(id).textContent='00');return}
+  document.getElementById('cd').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('ch').textContent=String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cm').textContent=String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('cs').textContent=String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+/* ══ HERO PARTICLE CANVAS ══ */
+(()=>{
+  const c=document.getElementById('hc'),ctx=c.getContext('2d');
+  let pts=[],mouse={x:innerWidth/2,y:innerHeight/2};
+  const resize=()=>{c.width=innerWidth;c.height=innerHeight};
+  resize();window.addEventListener('resize',resize);
+  document.getElementById('sh').addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
+  for(let i=0;i<75;i++)pts.push({
+    x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+    r:Math.random()*1.5+.3,
+    vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22,
+    o:Math.random()*.38+.08,
+    ph:Math.random()*Math.PI*2,sp:Math.random()*.014+.005,
+    col:Math.random()>.55?'192,132,252':'240,171,202'
+  });
+  (function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    pts.forEach(p=>{
+      p.ph+=p.sp;
+      p.x+=p.vx+Math.sin(p.ph)*.28;
+      p.y+=p.vy+Math.cos(p.ph*.7)*.18;
+      if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;
+      if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${p.col},${p.o})`;ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  })();
+})();
+
+/* ══ NIGHT SCENE CANVAS ══ */
+(()=>{
+  const c=document.getElementById('nc'),ctx=c.getContext('2d');
+  let t=0,stars=[];
+  const sn=document.getElementById('sn');
+  const resize=()=>{c.width=innerWidth;c.height=sn.offsetHeight||innerHeight};
+  resize();window.addEventListener('resize',resize);
+  for(let i=0;i<130;i++)stars.push({
+    x:Math.random()*innerWidth,y:Math.random()*innerHeight*.8,
+    r:Math.random()*1.5+.3,ph:Math.random()*Math.PI*2,
+    sp:Math.random()*.018+.006,layer:Math.floor(Math.random()*3)
+  });
+  const clouds=[
+    {speed:.25,baseY:.26,h:24,col:'rgba(255,255,255,.048)',items:[{x:80,w:130},{x:380,w:85},{x:680,w:155},{x:950,w:90}]},
+    {speed:.55,baseY:.43,h:18,col:'rgba(255,255,255,.038)',items:[{x:160,w:95},{x:500,w:115},{x:820,w:75}]},
+    {speed:.9,baseY:.6,h:13,col:'rgba(255,255,255,.028)',items:[{x:60,w:65},{x:320,w:95},{x:620,w:80},{x:900,w:60}]}
+  ];
+  (function draw(){
+    t+=.007;
+    ctx.clearRect(0,0,c.width,c.height);
+    // sky
+    const g=ctx.createLinearGradient(0,0,0,c.height);
+    g.addColorStop(0,'#010107');g.addColorStop(.45,'#030215');g.addColorStop(1,'#07021a');
+    ctx.fillStyle=g;ctx.fillRect(0,0,c.width,c.height);
+    // aurora
+    const ag=ctx.createRadialGradient(c.width*.3,0,0,c.width*.3,0,c.height*.5);
+    ag.addColorStop(0,'rgba(80,30,180,.07)');ag.addColorStop(1,'transparent');
+    ctx.fillStyle=ag;ctx.fillRect(0,0,c.width,c.height*.5);
+    // stars
+    stars.forEach(s=>{
+      s.ph+=s.sp;
+      const px=s.layer*14*Math.sin(t*.1),py=s.layer*6*Math.cos(t*.08);
+      const op=(.28+Math.sin(s.ph)*.22)*(.4+s.layer*.15);
+      ctx.beginPath();ctx.arc(s.x+px,s.y+py,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${Math.max(0,op)})`;ctx.fill();
+    });
+    // moon glow
+    const mx=c.width*.78,my=c.height*.17;
+    const mg=ctx.createRadialGradient(mx,my,0,mx,my,90);
+    mg.addColorStop(0,'rgba(255,248,180,.1)');mg.addColorStop(1,'transparent');
+    ctx.fillStyle=mg;ctx.beginPath();ctx.arc(mx,my,90,0,Math.PI*2);ctx.fill();
+    // moon
+    const moon=ctx.createRadialGradient(mx-7,my-7,0,mx,my,30);
+    moon.addColorStop(0,'#fffde8');moon.addColorStop(.55,'#f5d450');moon.addColorStop(1,'#d4a820');
+    ctx.fillStyle=moon;ctx.beginPath();ctx.arc(mx,my,30,0,Math.PI*2);ctx.fill();
+    // clouds
+    clouds.forEach(layer=>{
+      const offset=(t*layer.speed*28)%(c.width+220);
+      layer.items.forEach(cl=>{
+        const cx=((cl.x+offset)%(c.width+220))-110,cy=c.height*layer.baseY;
+        ctx.fillStyle=layer.col;
+        [[0,0,cl.w,layer.h],[-.38,5,.58,.78],[.38,6,.52,.72]].forEach(([dx,dy,wr,hr])=>{
+          ctx.beginPath();ctx.ellipse(cx+cl.w*dx,cy+dy,cl.w*wr,layer.h*hr,0,0,Math.PI*2);ctx.fill();
+        });
+      });
+    });
+    // cradle
+    const cx=c.width/2,cy=c.height*.76;
+    const sw=Math.sin(t*1.1)*.17;
+    ctx.save();ctx.translate(cx,cy-42);ctx.rotate(sw);
+    ctx.strokeStyle='rgba(255,255,255,.18)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(0,42);ctx.stroke();
+    ctx.strokeStyle='rgba(255,255,255,.16)';ctx.lineWidth=1.5;ctx.fillStyle='rgba(255,255,255,.045)';
+    ctx.beginPath();ctx.moveTo(-26,42);ctx.lineTo(-28,64);
+    ctx.arc(0,64,28,Math.PI,0,false);
+    ctx.lineTo(26,42);ctx.closePath();ctx.stroke();ctx.fill();
+    ctx.fillStyle='rgba(255,228,238,.28)';ctx.beginPath();ctx.ellipse(0,57,11,9,0,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+    // floating sparkles
+    for(let i=0;i<6;i++){
+      const sx=c.width*(.08+i*.16)+Math.sin(t*.9+i)*12;
+      const sy=c.height*.88+Math.cos(t*.5+i*1.1)*9;
+      const so=.28+Math.sin(t*1.4+i)*.22;
+      ctx.fillStyle=`rgba(192,132,252,${Math.max(0,so)})`;
+      ctx.beginPath();ctx.arc(sx,sy,.9,0,Math.PI*2);ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  })();
+})();
+
+/* ══ 3D TILT ══ */
+document.querySelectorAll('.de-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`translateY(-7px) rotateX(${-y*10}deg) rotateY(${x*10}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform=''});
+});
+
+/* ══ RSVP ══ */
+let choice='y';
+function pick(v){
+  choice=v;
+  document.getElementById('ry').classList.toggle('sel',v==='y');
+  document.getElementById('rno').classList.toggle('sel',v==='n');
+}
+function submitRv(){
+  const name=document.getElementById('rn').value.trim();
+  if(!name){document.getElementById('rn').focus();document.getElementById('rn').style.borderColor='rgba(244,63,94,.5)';return}
+  document.getElementById('rvf').style.display='none';
+  const ty=document.getElementById('rvty');
+  ty.style.display='block';
+  if(choice==='n'){
+    document.getElementById('ty-h').textContent='We\'ll miss you dearly 💜';
+    document.getElementById('ty-p').textContent='Thank you so much for letting us know. You\'ll be in our hearts on this special day.';
+  }else{
+    launchConfetti();
+  }
+}
+
+/* ══ CONFETTI ══ */
+function launchConfetti(){
+  const c=document.getElementById('cc');
+  c.width=innerWidth;c.height=innerHeight;
+  const ctx=c.getContext('2d');
+  const cols=['#c084fc','#f0abca','#7c3aed','#fb7185','#fbbf24','#ffffff','#a78bfa','#f472b6'];
+  const pieces=[];
+  for(let i=0;i<140;i++)pieces.push({
+    x:innerWidth/2,y:innerHeight*.62,
+    vx:(Math.random()-.5)*16,vy:-(Math.random()*16+4),
+    r:Math.random()*7+2,col:cols[Math.floor(Math.random()*cols.length)],
+    rot:Math.random()*Math.PI*2,rv:(Math.random()-.5)*.22,
+    shape:Math.random()>.45?'c':'r',life:1
+  });
+  (function dc(){
+    ctx.clearRect(0,0,c.width,c.height);
+    let alive=false;
+    pieces.forEach(p=>{
+      p.vy+=.32;p.x+=p.vx;p.y+=p.vy;p.rot+=p.rv;p.life-=.011;
+      if(p.life<=0)return;alive=true;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);
+      ctx.globalAlpha=Math.max(0,p.life);ctx.fillStyle=p.col;
+      if(p.shape==='c'){ctx.beginPath();ctx.arc(0,0,p.r,0,Math.PI*2);ctx.fill()}
+      else ctx.fillRect(-p.r,-p.r*.5,p.r*2,p.r);
+      ctx.restore();
+    });
+    if(alive)requestAnimationFrame(dc);
+    else ctx.clearRect(0,0,c.width,c.height);
+  })();
+}
+</script>
+</body>
+</html>
