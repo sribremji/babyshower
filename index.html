@@ -493,39 +493,21 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
       </a>
     </div>
 
-    <!-- RSVP -->
-    <!--
-      ══════════════════════════════════════════
-      FREE EMAIL SETUP — FORMSPREE
-      ══════════════════════════════════════════
-      1. Go to https://formspree.io
-      2. Sign up FREE (50 RSVPs/month)
-      3. Create new form — set your email address
-      4. Copy your Form ID (e.g. abcd1234)
-      5. Replace YOUR_FORM_ID below with it
-      ══════════════════════════════════════════
-    -->
+    <!-- RSVP — Google Sheets (free & unlimited) -->
     <div class="rv right" style="transition-delay:.22s">
       <div class="rsvp-card">
         <div class="rsvp-hed">Will you join us?</div>
         <div class="rsvp-sub">April 12 · 10:30 AM – 12:00 PM · Miththam</div>
-        <form id="rsvp-form"
-              action="https://formspree.io/f/YOUR_FORM_ID"
-              method="POST"
-              onsubmit="handleRSVP(event)">
-          <input class="rsvp-inp" type="text" name="name" placeholder="Your Name" required>
-          <input class="rsvp-inp" type="tel" name="phone" placeholder="Phone / WhatsApp Number" required>
-          <!-- Hidden context fields — appear in your email -->
-          <input type="hidden" name="event" value="Prathee's Baby Shower — Sunday, April 12, 2026, 10:30 AM – 12:00 PM">
-          <input type="hidden" name="_subject" value="New RSVP — Prathee's Baby Shower 🌸">
-          <input type="hidden" name="attendance" id="att-val" value="Attending ✅">
+        <div id="rsvp-form">
+          <input class="rsvp-inp" type="text" id="rv-name" placeholder="Your Name">
+          <input class="rsvp-inp" type="tel" id="rv-phone" placeholder="Phone / WhatsApp Number">
           <div class="rsvp-opts" id="rsvp-opts">
-            <div class="rsvp-opt on" onclick="pickAtt(this,'Attending ✅')">🎉 I'll be there</div>
-            <div class="rsvp-opt" onclick="pickAtt(this,'Not Attending ❌')">💜 Can't make it</div>
+            <div class="rsvp-opt on" onclick="pickAtt(this)">🎉 I'll be there</div>
+            <div class="rsvp-opt" onclick="pickAtt(this)">💜 Can't make it</div>
           </div>
-          <button class="rsvp-btn" type="submit" id="rsvp-submit">Send with Love 🌸</button>
+          <button class="rsvp-btn" id="rsvp-submit" onclick="handleRSVP()">Send with Love 🌸</button>
           <div class="rsvp-note">We'll see you on April 12th 🌿</div>
-        </form>
+        </div>
         <div class="rsvp-ty" id="rsvp-ty">
           <span class="rsvp-ty-icon" id="rsvp-ty-icon">🌸</span>
           <div class="rsvp-ty-title" id="rsvp-ty-title">Thank you!</div>
@@ -716,31 +698,51 @@ function flipCard(el){
 }
 initGame();
 
-/* ══ RSVP ══ */
-function pickAtt(el,val){
+/* ══ RSVP — Google Sheets ══ */
+
+// ⚡ PASTE YOUR APPS SCRIPT WEB APP URL HERE:
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwoCnCU2ZQyh7hU9yjawlYSI8t6SsUpA0ezBznVaUD87OkcdlJVClSJoHdtRD0JQ3FV/exec';
+
+let attending = true;
+
+function pickAtt(el){
   document.querySelectorAll('#rsvp-opts .rsvp-opt').forEach(o=>o.classList.remove('on'));
   el.classList.add('on');
-  document.getElementById('att-val').value=val;
+  attending = el.textContent.includes('be there');
 }
 
-async function handleRSVP(e){
-  e.preventDefault();
-  const form=e.target;
-  const btn=document.getElementById('rsvp-submit');
-  const isAttending=document.getElementById('att-val').value.includes('Attending ✅');
-  btn.disabled=true;btn.textContent='Sending…';
-  const action=form.getAttribute('action');
-  if(action.includes('YOUR_FORM_ID')){
-    // Demo mode — show confirmation without sending
-    showThanks(isAttending);return;
+async function handleRSVP(){
+  const name = document.getElementById('rv-name').value.trim();
+  const phone = document.getElementById('rv-phone').value.trim();
+  if(!name){ document.getElementById('rv-name').focus(); document.getElementById('rv-name').style.borderColor='rgba(239,68,68,.6)'; return; }
+  if(!phone){ document.getElementById('rv-phone').focus(); document.getElementById('rv-phone').style.borderColor='rgba(239,68,68,.6)'; return; }
+  const btn = document.getElementById('rsvp-submit');
+  btn.disabled=true; btn.textContent='Sending… 🌸';
+
+  const data = {
+    name: name,
+    phone: phone,
+    attendance: attending ? 'Attending ✅' : 'Not Attending ❌',
+    timestamp: new Date().toLocaleString('en-IN', {timeZone:'Asia/Kolkata'}),
+    event: "Prathee's Baby Shower — Sunday, April 12, 2026"
+  };
+
+  if(GOOGLE_SHEET_URL === 'YOUR_APPS_SCRIPT_URL'){
+    // Demo mode — no URL set yet
+    showThanks(attending); return;
   }
+
   try{
-    const res=await fetch(action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
-    if(res.ok){showThanks(isAttending);}
-    else{btn.disabled=false;btn.textContent='Try Again →';alert('Oops! Something went wrong. Please try again.');}
+    await fetch(GOOGLE_SHEET_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    // no-cors means we won't get a response body — assume success
+    showThanks(attending);
   }catch(err){
-    // Network fallback — still show thanks
-    showThanks(isAttending);
+    showThanks(attending); // show thanks anyway — sheet likely received it
   }
 }
 
