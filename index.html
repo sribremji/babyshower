@@ -260,6 +260,149 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
   .rsvp-card{padding:24px 20px}
   #sh{padding:80px 20px 60px}
 }
+
+/* ══════════════════════════════════════════
+   REMINDER POPUP
+══════════════════════════════════════════ */
+#reminder-overlay{
+  position:fixed;inset:0;
+  background:rgba(26,18,8,.52);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  z-index:10000;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  animation:overlayIn .4s ease both;
+}
+@keyframes overlayIn{from{opacity:0}to{opacity:1}}
+
+#reminder-popup{
+  width:100%;
+  max-width:520px;
+  background:#fff;
+  border-radius:28px 28px 0 0;
+  padding:28px 26px 34px;
+  animation:popupUp .55s cubic-bezier(0.16,1,0.3,1) both;
+  position:relative;
+  overflow:hidden;
+}
+#reminder-popup::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,#f9a8d4,#fb923c,#4ade80,#60a5fa,#c084fc);
+}
+@keyframes popupUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.rp-handle{
+  width:36px;height:4px;
+  background:rgba(0,0,0,.1);
+  border-radius:2px;
+  margin:0 auto 20px;
+}
+.rp-icon{font-size:36px;display:block;text-align:center;margin-bottom:12px;animation:rpBounce .7s cubic-bezier(0.36,0.07,0.19,0.97) .3s both}
+@keyframes rpBounce{from{transform:scale(.4) rotate(-15deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
+
+.rp-title{
+  font-family:'DM Serif Display',serif;
+  font-style:italic;
+  font-size:clamp(20px,4vw,26px);
+  color:#1a1208;
+  text-align:center;
+  line-height:1.2;
+  margin-bottom:8px;
+}
+.rp-title em{color:#c4633a}
+.rp-sub{
+  font-size:13px;
+  font-weight:300;
+  color:rgba(0,0,0,.48);
+  text-align:center;
+  line-height:1.7;
+  margin-bottom:22px;
+  max-width:340px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.rp-btn-gcal{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1.5px solid rgba(74,222,128,.35);
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+  cursor:pointer;
+  transition:all .3s;
+  margin-bottom:10px;
+  text-align:left;
+}
+.rp-btn-gcal:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(74,222,128,.2);
+  border-color:rgba(74,222,128,.6);
+}
+.rp-btn-icon{font-size:24px;flex-shrink:0}
+.rp-btn-text{flex:1}
+.rp-btn-name{
+  font-size:13px;
+  font-weight:500;
+  color:#166534;
+  display:block;
+  margin-bottom:2px;
+}
+.rp-btn-desc{
+  font-size:10px;
+  color:rgba(22,101,52,.55);
+  display:block;
+  letter-spacing:.3px;
+}
+.rp-btn-arrow{font-size:14px;color:rgba(22,101,52,.4)}
+
+.rp-skip{
+  width:100%;
+  padding:13px;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.08);
+  background:transparent;
+  font-family:'Outfit',sans-serif;
+  font-size:12px;
+  font-weight:300;
+  color:rgba(0,0,0,.4);
+  cursor:pointer;
+  transition:all .3s;
+  letter-spacing:.3px;
+}
+.rp-skip:hover{background:rgba(0,0,0,.04);color:rgba(0,0,0,.6)}
+
+/* success state */
+#rp-success{display:none;text-align:center;padding:8px 0 4px}
+.rps-icon{font-size:40px;display:block;margin-bottom:12px;animation:rpBounce .6s cubic-bezier(0.36,0.07,0.19,0.97)}
+.rps-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:22px;color:#166534;margin-bottom:10px}
+.rps-msg{font-size:12px;color:rgba(0,0,0,.45);line-height:1.8;margin-bottom:18px}
+.rps-msg strong{color:#166534;font-weight:500}
+.rps-close{
+  display:inline-block;
+  padding:12px 36px;
+  border-radius:40px;
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+  border:1.5px solid rgba(74,222,128,.35);
+  font-family:'Outfit',sans-serif;
+  font-size:10px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#166534;
+  cursor:pointer;
+  transition:all .3s;
+}
+.rps-close:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(74,222,128,.2)}
+
+@media(max-width:480px){
+  #reminder-popup{padding:24px 18px 28px}
+  .rp-btn-gcal{padding:14px 14px}
+}
 </style>
 </head>
 <body>
@@ -271,6 +414,49 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
 <div id="pbar"></div>
 <!-- CONFETTI -->
 <canvas id="confetti-canvas"></canvas>
+
+<!-- ════════════════════════════
+     GOOGLE CALENDAR REMINDER POPUP
+     Shows once per device on first visit
+════════════════════════════ -->
+<div id="reminder-overlay" style="display:none">
+  <div id="reminder-popup">
+    <div class="rp-handle"></div>
+
+    <!-- Default state -->
+    <div id="rp-default">
+      <span class="rp-icon">🌸</span>
+      <div class="rp-title"><em>Prathee's Baby Shower</em><br>is on April 12th!</div>
+      <div class="rp-sub">Would you like to add a reminder to your Google Calendar so you don't miss this special day?</div>
+
+      <button class="rp-btn-gcal" onclick="addToGoogleCal()">
+        <span class="rp-btn-icon">📅</span>
+        <div class="rp-btn-text">
+          <span class="rp-btn-name">Yes, add to Google Calendar</span>
+          <span class="rp-btn-desc">A reminder will be set for April 10th, 2 days before ✨</span>
+        </div>
+        <span class="rp-btn-arrow">→</span>
+      </button>
+
+      <button class="rp-skip" onclick="dismissReminder()">No thanks, I'll remember on my own 🙂</button>
+    </div>
+
+    <!-- Success state -->
+    <div id="rp-success">
+      <span class="rps-icon">🎉</span>
+      <div class="rps-title">You're all set!</div>
+      <div class="rps-msg">
+        Google Calendar is opening with<br>
+        <strong>Prathee's Baby Shower</strong> already filled in.<br><br>
+        Just tap <strong>Save</strong> — and a reminder will<br>
+        notify you on <strong>Friday, April 10th</strong> 🌸
+      </div>
+      <button class="rps-close" onclick="closeReminder()">Continue to invitation →</button>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- NAV DOTS -->
 <div id="nav">
@@ -701,7 +887,7 @@ initGame();
 /* ══ RSVP — Google Sheets ══ */
 
 // ⚡ PASTE YOUR APPS SCRIPT WEB APP URL HERE:
-const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwoCnCU2ZQyh7hU9yjawlYSI8t6SsUpA0ezBznVaUD87OkcdlJVClSJoHdtRD0JQ3FV/exec';
+const GOOGLE_SHEET_URL = 'YOUR_APPS_SCRIPT_URL';
 
 let attending = true;
 
@@ -791,6 +977,62 @@ function launchConfetti(){
     else ctx.clearRect(0,0,c.width,c.height);
   })();
 }
+
+/* ══ GOOGLE CALENDAR REMINDER POPUP ══ */
+(function initReminder(){
+  // Only show if not already seen on this device
+  if(localStorage.getItem('rsvp_reminder_seen')) return;
+  // Small delay so the hero animation plays first
+  setTimeout(function(){
+    document.getElementById('reminder-overlay').style.display='flex';
+  }, 1800);
+})();
+
+function addToGoogleCal(){
+  // Event details
+  var title  = encodeURIComponent("Prathee's Baby Shower 🌸");
+  var loc    = encodeURIComponent("Miththam, Near Nithya Kalyana Perumal Temple, Thiruvidanthai, ECR, Chennai 603112");
+  var desc   = encodeURIComponent("You're warmly invited to Prathee's Baby Shower! Come celebrate this beautiful new chapter. 🌸\n\nDress: Pretty & festive\nVenue: Miththam, Thiruvidanthai, ECR");
+  // Start: 12 Apr 2026 10:30 AM IST, End: 12 Apr 2026 12:00 PM IST (IST = UTC+5:30)
+  var start  = "20260412T103000";   // local time format for Google Cal
+  var end    = "20260412T120000";
+  var tz     = encodeURIComponent("Asia/Kolkata");
+  // Reminder: 2 days before = April 10 09:00 AM — Google Cal doesn't let us force the reminder
+  // but we pre-fill the event and user can set their own. We'll note it in description.
+
+  var gcalUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + title
+    + "&dates=" + start + "/" + end
+    + "&location=" + loc
+    + "&details=" + desc
+    + "&ctz=" + tz;
+
+  // Show success state first, then open Google Calendar
+  document.getElementById('rp-default').style.display = 'none';
+  document.getElementById('rp-success').style.display  = 'block';
+
+  // Save so popup never shows again
+  localStorage.setItem('rsvp_reminder_seen', '1');
+
+  // Open Google Calendar in new tab after short delay
+  setTimeout(function(){ window.open(gcalUrl, '_blank'); }, 700);
+}
+
+function dismissReminder(){
+  localStorage.setItem('rsvp_reminder_seen', '1');
+  closeReminder();
+}
+
+function closeReminder(){
+  var overlay = document.getElementById('reminder-overlay');
+  overlay.style.animation = 'overlayIn .3s ease reverse';
+  setTimeout(function(){
+    overlay.style.display = 'none';
+    // Reset for next preview (remove this line in production if you want)
+    // localStorage.removeItem('rsvp_reminder_seen');
+  }, 280);
+}
+
 </script>
 </body>
 </html>
