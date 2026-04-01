@@ -427,13 +427,13 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
     <div id="rp-default">
       <span class="rp-icon">🌸</span>
       <div class="rp-title"><em>Prathee's Baby Shower</em><br>is on April 12th!</div>
-      <div class="rp-sub">Would you like to add a reminder to your Google Calendar so you don't miss this special day?</div>
+      <div class="rp-sub">Add it to your calendar — your <strong>April 10th reminder</strong> is set automatically. No extra steps needed!</div>
 
-      <button class="rp-btn-gcal" onclick="addToGoogleCal()">
+      <button class="rp-btn-gcal" onclick="addToCalendar()">
         <span class="rp-btn-icon">📅</span>
         <div class="rp-btn-text">
-          <span class="rp-btn-name">Yes, add to Google Calendar</span>
-          <span class="rp-btn-desc">A reminder will be set for April 10th, 2 days before ✨</span>
+          <span class="rp-btn-name">Add to My Calendar</span>
+          <span class="rp-btn-desc">Opens your calendar app directly · No download needed 🔔</span>
         </div>
         <span class="rp-btn-arrow">→</span>
       </button>
@@ -446,10 +446,14 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
       <span class="rps-icon">🎉</span>
       <div class="rps-title">You're all set!</div>
       <div class="rps-msg">
-        Google Calendar is opening with<br>
-        <strong>Prathee's Baby Shower</strong> already filled in.<br><br>
-        Just tap <strong>Save</strong> — and a reminder will<br>
-        notify you on <strong>Friday, April 10th</strong> 🌸
+        Your calendar app is opening now.<br><br>
+        Tap <strong>OK</strong> or <strong>Add</strong> when it asks —<br>
+        that's the only step!<br><br>
+        <span style="display:inline-block;background:#f0fdf4;border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:8px 12px;margin-top:4px;font-size:11px;color:#166534;line-height:1.7">
+          🔔 <strong>Reminder: April 10, 9 AM</strong> — already set<br>
+          📅 <strong>Event: April 12, 10:30 AM</strong> at Miththam<br>
+          ✅ No download · No extra steps!
+        </span>
       </div>
       <button class="rps-close" onclick="closeReminder()">Continue to invitation →</button>
     </div>
@@ -539,7 +543,7 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
 <section id="sco">
   <div class="deco" style="top:16px;right:18px;--d:8s;--tx:-5px;--ty:-10px;--r:-8deg;--sz:26px">🌿</div>
   <div class="deco" style="bottom:16px;left:16px;--d:10s;--tx:4px;--ty:-8px;--r:7deg;--sz:22px">🍃</div>
-  <div class="co-eye rv">✦ &nbsp; The big day is approaching &nbsp; ✦</div>
+  <div class="co-eye rv">✦ &nbsp; Celebrating tiny feet's day &nbsp; ✦</div>
   <div class="co-row rv" style="transition-delay:.2s">
     <div class="co-box"><span class="co-n" id="cd">--</span><span class="co-l">Days</span></div>
     <div class="co-box"><span class="co-n" id="ch">--</span><span class="co-l">Hours</span></div>
@@ -988,35 +992,30 @@ function launchConfetti(){
   }, 1800);
 })();
 
-function addToGoogleCal(){
-  // Event details
-  var title  = encodeURIComponent("Prathee's Baby Shower 🌸");
-  var loc    = encodeURIComponent("Miththam, Near Nithya Kalyana Perumal Temple, Thiruvidanthai, ECR, Chennai 603112");
-  var desc   = encodeURIComponent("You're warmly invited to Prathee's Baby Shower! Come celebrate this beautiful new chapter. 🌸\n\nDress: Pretty & festive\nVenue: Miththam, Thiruvidanthai, ECR");
-  // Start: 12 Apr 2026 10:30 AM IST, End: 12 Apr 2026 12:00 PM IST (IST = UTC+5:30)
-  var start  = "20260412T103000";   // local time format for Google Cal
-  var end    = "20260412T120000";
-  var tz     = encodeURIComponent("Asia/Kolkata");
-  // Reminder: 2 days before = April 10 09:00 AM — Google Cal doesn't let us force the reminder
-  // but we pre-fill the event and user can set their own. We'll note it in description.
+function addToCalendar(){
+  /*
+   * Uses webcal:// protocol — the industry standard for calendar links.
+   * Tapping a webcal:// link on any phone opens the calendar app directly.
+   * No file download. No clicking a file. Calendar opens automatically.
+   *
+   * iOS Safari   → Apple Calendar opens instantly
+   * Android      → Google Calendar opens instantly
+   *
+   * IMPORTANT: Replace YOUR-GITHUB-USERNAME below with your actual GitHub username.
+   * The calendar.ics file must be uploaded to your GitHub repo alongside index.html.
+   */
+  var webcalUrl = 'webcal://sribremji.github.io/babyshower/calendar.ics';
 
-  var gcalUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE"
-    + "&text=" + title
-    + "&dates=" + start + "/" + end
-    + "&location=" + loc
-    + "&details=" + desc
-    + "&ctz=" + tz;
+  // Opens calendar app directly — no download, no file click needed
+  window.location.href = webcalUrl;
 
-  // Show success state first, then open Google Calendar
+  // Show success immediately
   document.getElementById('rp-default').style.display = 'none';
   document.getElementById('rp-success').style.display  = 'block';
-
-  // Save so popup never shows again
   localStorage.setItem('rsvp_reminder_seen', '1');
-
-  // Open Google Calendar in new tab after short delay
-  setTimeout(function(){ window.open(gcalUrl, '_blank'); }, 700);
 }
+
+
 
 function dismissReminder(){
   localStorage.setItem('rsvp_reminder_seen', '1');
