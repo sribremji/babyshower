@@ -427,13 +427,13 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
     <div id="rp-default">
       <span class="rp-icon">🌸</span>
       <div class="rp-title"><em>Prathee's Baby Shower</em><br>is on April 12th!</div>
-      <div class="rp-sub">Add it to your calendar — your <strong>April 10th reminder</strong> is set automatically. No extra steps needed!</div>
+      <div class="rp-sub">Add <strong>2 events</strong> to your Google Calendar — a reminder on April 10th &amp; the shower on April 12th. Both saved in one tap!</div>
 
       <button class="rp-btn-gcal" onclick="addToCalendar()">
         <span class="rp-btn-icon">📅</span>
         <div class="rp-btn-text">
-          <span class="rp-btn-name">Add to My Calendar</span>
-          <span class="rp-btn-desc">Opens your calendar app directly · No download needed 🔔</span>
+          <span class="rp-btn-name">Add Both Events to Google Calendar</span>
+          <span class="rp-btn-desc">📅 Apr 10 reminder + 📅 Apr 12 shower · 2 tabs open</span>
         </div>
         <span class="rp-btn-arrow">→</span>
       </button>
@@ -446,13 +446,13 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
       <span class="rps-icon">🎉</span>
       <div class="rps-title">You're all set!</div>
       <div class="rps-msg">
-        Your calendar app is opening now.<br><br>
-        Tap <strong>OK</strong> or <strong>Add</strong> when it asks —<br>
-        that's the only step!<br><br>
-        <span style="display:inline-block;background:#f0fdf4;border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:8px 12px;margin-top:4px;font-size:11px;color:#166534;line-height:1.7">
-          🔔 <strong>Reminder: April 10, 9 AM</strong> — already set<br>
-          📅 <strong>Event: April 12, 10:30 AM</strong> at Miththam<br>
-          ✅ No download · No extra steps!
+        <strong>2 Google Calendar tabs are opening!</strong><br><br>
+        In each tab, just tap <strong>Save</strong> to add the event.<br><br>
+        <span style="display:inline-block;background:#f0fdf4;border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:10px 13px;margin-top:4px;font-size:11px;color:#166534;line-height:1.9;text-align:left;width:100%">
+          🔔 <strong>Tab 1 — April 10, 9:00 AM</strong><br>
+          &nbsp;&nbsp;&nbsp;Reminder: Prathee's Baby Shower in 2 days!<br>
+          📅 <strong>Tab 2 — April 12, 10:30 AM</strong><br>
+          &nbsp;&nbsp;&nbsp;Prathee's Baby Shower at Miththam 🌸
         </span>
       </div>
       <button class="rps-close" onclick="closeReminder()">Continue to invitation →</button>
@@ -543,7 +543,7 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
 <section id="sco">
   <div class="deco" style="top:16px;right:18px;--d:8s;--tx:-5px;--ty:-10px;--r:-8deg;--sz:26px">🌿</div>
   <div class="deco" style="bottom:16px;left:16px;--d:10s;--tx:4px;--ty:-8px;--r:7deg;--sz:22px">🍃</div>
-  <div class="co-eye rv">✦ &nbsp; Celebrating tiny feet's day &nbsp; ✦</div>
+  <div class="co-eye rv">✦ &nbsp; The big day is approaching &nbsp; ✦</div>
   <div class="co-row rv" style="transition-delay:.2s">
     <div class="co-box"><span class="co-n" id="cd">--</span><span class="co-l">Days</span></div>
     <div class="co-box"><span class="co-n" id="ch">--</span><span class="co-l">Hours</span></div>
@@ -993,30 +993,58 @@ function launchConfetti(){
 })();
 
 function addToCalendar(){
-  /*
-   * Uses webcal:// protocol — the industry standard for calendar links.
-   * Tapping a webcal:// link on any phone opens the calendar app directly.
-   * No file download. No clicking a file. Calendar opens automatically.
+  /* ─────────────────────────────────────────────────────
+   * Opens TWO Google Calendar tabs simultaneously
+   * (both window.open calls are synchronous in the same
+   *  user-click handler, so popup blockers allow them)
    *
-   * iOS Safari   → Apple Calendar opens instantly
-   * Android      → Google Calendar opens instantly
-   *
-   * IMPORTANT: Replace YOUR-GITHUB-USERNAME below with your actual GitHub username.
-   * The calendar.ics file must be uploaded to your GitHub repo alongside index.html.
-   */
-  var webcalUrl = 'webcal://sribremji.github.io/babyshower/calendar.ics';
+   * Event 1: April 10 — Reminder "2 Days to Go!"
+   * Event 2: April 12 — The actual Baby Shower
+   * ───────────────────────────────────────────────────── */
 
-  // Opens calendar app directly — no download, no file click needed
-  window.location.href = webcalUrl;
+  /* ── APRIL 10 REMINDER EVENT ── */
+  // 9:00 AM IST = 03:30 UTC  |  9:30 AM IST = 04:00 UTC
+  var r_title = encodeURIComponent("\uD83D\uDD14 Prathee\u2019s Baby Shower \u2014 2 Days to Go!");
+  var r_desc  = encodeURIComponent(
+    "Prathee\u2019s Baby Shower is this Sunday, April 12!\n\n" +
+    "\uD83D\uDCC5 April 12, 2026 \u00B7 10:30 AM \u2013 12:00 PM\n" +
+    "\uD83D\uDCCD Miththam, Thiruvidanthai, ECR, Chennai 603112\n\n" +
+    "Get ready to celebrate! \uD83C\uDF38"
+  );
+  var r_url = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text="    + r_title
+    + "&dates="   + "20260410T033000Z/20260410T040000Z"
+    + "&details=" + r_desc;
 
-  // Show success immediately
+  /* ── APRIL 12 ACTUAL EVENT ── */
+  // 10:30 AM IST = 05:00 UTC  |  12:00 PM IST = 06:30 UTC
+  var e_title = encodeURIComponent("Prathee\u2019s Baby Shower \uD83C\uDF38");
+  var e_loc   = encodeURIComponent("Miththam, Near Nithya Kalyana Perumal Temple, Thiruvidanthai, ECR, Chennai 603112");
+  var e_desc  = encodeURIComponent(
+    "You are warmly invited to Prathee\u2019s Baby Shower!\n\n" +
+    "\uD83D\uDCC5 Sunday, April 12, 2026\n" +
+    "\u23F0 10:30 AM \u2013 12:00 PM\n" +
+    "\uD83D\uDCCD Miththam, Near Nithya Kalyana Perumal Temple,\n" +
+    "    Thiruvidanthai, ECR, Chennai 603112\n\n" +
+    "Come celebrate this beautiful new chapter with love! \uD83C\uDF38"
+  );
+  var e_url = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text="     + e_title
+    + "&dates="    + "20260412T050000Z/20260412T063000Z"
+    + "&location=" + e_loc
+    + "&details="  + e_desc
+    + "&ctz="      + encodeURIComponent("Asia/Kolkata");
+
+  /* ── Open both tabs simultaneously ── */
+  /* Both are synchronous in the same click handler — popup blocker allows this */
+  window.open(r_url, '_blank');
+  window.open(e_url, '_blank');
+
+  /* ── Show success in popup ── */
   document.getElementById('rp-default').style.display = 'none';
   document.getElementById('rp-success').style.display  = 'block';
   localStorage.setItem('rsvp_reminder_seen', '1');
 }
-
-
-
 function dismissReminder(){
   localStorage.setItem('rsvp_reminder_seen', '1');
   closeReminder();
