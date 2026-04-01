@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Prathee Baby Shower 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Prathee's Baby Shower
+X-WR-TIMEZONE:Asia/Kolkata
+BEGIN:VEVENT
+UID:prathee-babyshower-20260412@miththam.in
+DTSTART:20260412T050000Z
+DTEND:20260412T063000Z
+SUMMARY:Prathee's Baby Shower 🌸
+LOCATION:Miththam\, Near Nithya Kalyana Perumal Temple\, Thiruvidanthai\, ECR\, Chennai 603112
+DESCRIPTION:You are warmly invited to Prathee's Baby Shower!\nSunday\, April 12\, 2026\n10:30 AM - 12:00 PM\nMiththam\, Thiruvidanthai\, ECR\, Chennai 603112\n\nCome celebrate this beautiful new chapter! 🌸
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER;VALUE=DATE-TIME:20260410T033000Z
+ACTION:DISPLAY
+DESCRIPTION:🔔 Prathee's Baby Shower is in 2 days! April 12 at 10:30 AM\, Miththam 🌸
+END:VALARM
+END:VEVENT
+END:VCALENDAR
