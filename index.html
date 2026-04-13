@@ -262,7 +262,7 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
 }
 
 /* ══════════════════════════════════════════
-   REMINDER POPUP
+   THANK YOU POPUP + FUNNY SCREEN
 ══════════════════════════════════════════ */
 #reminder-overlay{
   position:fixed;inset:0;
@@ -271,138 +271,55 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
   -webkit-backdrop-filter:blur(6px);
   z-index:10000;
   display:flex;
-  align-items:flex-end;
+  align-items:center;
   justify-content:center;
+  padding:20px;
   animation:overlayIn .4s ease both;
 }
 @keyframes overlayIn{from{opacity:0}to{opacity:1}}
-
 #reminder-popup{
-  width:100%;
-  max-width:520px;
-  background:#fff;
-  border-radius:28px 28px 0 0;
-  padding:28px 26px 34px;
-  animation:popupUp .55s cubic-bezier(0.16,1,0.3,1) both;
-  position:relative;
-  overflow:hidden;
+  width:100%;max-width:480px;
+  background:#fff;border-radius:28px;
+  padding:32px 28px 28px;
+  animation:popupIn .55s cubic-bezier(0.16,1,0.3,1) both;
+  position:relative;overflow:hidden;text-align:center;
 }
 #reminder-popup::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;height:3px;
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:linear-gradient(90deg,#f9a8d4,#fb923c,#4ade80,#60a5fa,#c084fc);
 }
-@keyframes popupUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
-
-.rp-handle{
-  width:36px;height:4px;
-  background:rgba(0,0,0,.1);
-  border-radius:2px;
-  margin:0 auto 20px;
-}
-.rp-icon{font-size:36px;display:block;text-align:center;margin-bottom:12px;animation:rpBounce .7s cubic-bezier(0.36,0.07,0.19,0.97) .3s both}
-@keyframes rpBounce{from{transform:scale(.4) rotate(-15deg);opacity:0}to{transform:scale(1) rotate(0deg);opacity:1}}
-
-.rp-title{
-  font-family:'DM Serif Display',serif;
-  font-style:italic;
-  font-size:clamp(20px,4vw,26px);
-  color:#1a1208;
-  text-align:center;
-  line-height:1.2;
-  margin-bottom:8px;
-}
-.rp-title em{color:#c4633a}
-.rp-sub{
-  font-size:13px;
-  font-weight:300;
-  color:rgba(0,0,0,.48);
-  text-align:center;
-  line-height:1.7;
-  margin-bottom:22px;
-  max-width:340px;
-  margin-left:auto;
-  margin-right:auto;
-}
-.rp-btn-gcal{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:16px 18px;
-  border-radius:16px;
-  border:1.5px solid rgba(74,222,128,.35);
-  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
-  cursor:pointer;
-  transition:all .3s;
-  margin-bottom:10px;
-  text-align:left;
-}
-.rp-btn-gcal:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(74,222,128,.2);
-  border-color:rgba(74,222,128,.6);
-}
-.rp-btn-icon{font-size:24px;flex-shrink:0}
-.rp-btn-text{flex:1}
-.rp-btn-name{
-  font-size:13px;
-  font-weight:500;
-  color:#166534;
-  display:block;
-  margin-bottom:2px;
-}
-.rp-btn-desc{
-  font-size:10px;
-  color:rgba(22,101,52,.55);
-  display:block;
-  letter-spacing:.3px;
-}
-.rp-btn-arrow{font-size:14px;color:rgba(22,101,52,.4)}
-
-.rp-skip{
-  width:100%;
-  padding:13px;
-  border-radius:16px;
-  border:1px solid rgba(0,0,0,.08);
-  background:transparent;
-  font-family:'Outfit',sans-serif;
-  font-size:12px;
-  font-weight:300;
-  color:rgba(0,0,0,.4);
-  cursor:pointer;
-  transition:all .3s;
-  letter-spacing:.3px;
-}
-.rp-skip:hover{background:rgba(0,0,0,.04);color:rgba(0,0,0,.6)}
-
-/* success state */
-#rp-success{display:none;text-align:center;padding:8px 0 4px}
-.rps-icon{font-size:40px;display:block;margin-bottom:12px;animation:rpBounce .6s cubic-bezier(0.36,0.07,0.19,0.97)}
-.rps-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:22px;color:#166534;margin-bottom:10px}
-.rps-msg{font-size:12px;color:rgba(0,0,0,.45);line-height:1.8;margin-bottom:18px}
-.rps-msg strong{color:#166534;font-weight:500}
-.rps-close{
-  display:inline-block;
-  padding:12px 36px;
-  border-radius:40px;
-  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
-  border:1.5px solid rgba(74,222,128,.35);
-  font-family:'Outfit',sans-serif;
-  font-size:10px;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:#166534;
-  cursor:pointer;
-  transition:all .3s;
-}
-.rps-close:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(74,222,128,.2)}
-
-@media(max-width:480px){
-  #reminder-popup{padding:24px 18px 28px}
-  .rp-btn-gcal{padding:14px 14px}
-}
+@keyframes popupIn{from{transform:scale(.85) translateY(20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+/* ── Thank You ── */
+#ty-screen{text-align:center}
+.ty-confetti{font-size:11px;letter-spacing:6px;display:block;margin-bottom:16px;animation:flt 3s ease-in-out infinite alternate}
+@keyframes flt{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+.ty-main-icon{font-size:50px;display:block;margin-bottom:14px;animation:hb 1.8s ease-in-out infinite alternate}
+@keyframes hb{0%{transform:scale(1)}100%{transform:scale(1.1)}}
+.ty-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(20px,4vw,26px);color:#1a1208;line-height:1.2;margin-bottom:12px}
+.ty-msg{font-family:'Cormorant',serif;font-style:italic;font-size:clamp(14px,2vw,17px);color:rgba(0,0,0,.52);line-height:1.85;margin-bottom:12px}
+.ty-sign{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(180,80,40,.42);margin-bottom:22px;display:block}
+.ty-memories-btn{width:100%;padding:15px;border-radius:40px;background:linear-gradient(135deg,#c4633a,#e07b4a);border:none;color:#fff;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;box-shadow:0 6px 20px rgba(196,99,58,.3);transition:all .35s;margin-bottom:10px}
+.ty-memories-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(196,99,58,.38)}
+.ty-close-btn{width:100%;padding:12px;border-radius:40px;border:1px solid rgba(0,0,0,.1);background:transparent;font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,.35);cursor:pointer;transition:all .3s}
+.ty-close-btn:hover{background:rgba(0,0,0,.04);color:rgba(0,0,0,.55)}
+/* ── Funny Screen ── */
+#funny-screen{display:none;text-align:center}
+.funny-main-icon{font-size:48px;display:block;margin-bottom:14px}
+.funny-title{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(20px,4vw,26px);color:#1a1208;line-height:1.2;margin-bottom:12px}
+.funny-msg{font-size:clamp(12px,1.8vw,14px);color:rgba(0,0,0,.52);line-height:1.85;margin-bottom:16px}
+.funny-msg em{font-style:italic;color:rgba(0,0,0,.7)}
+.funny-dots{display:flex;gap:8px;justify-content:center;margin-bottom:8px}
+.funny-dots span{display:block;width:10px;height:10px;border-radius:50%;animation:dot 1.3s infinite both}
+.funny-dots span:nth-child(1){background:#f9a8d4;animation-delay:0s}
+.funny-dots span:nth-child(2){background:#60a5fa;animation-delay:.22s}
+.funny-dots span:nth-child(3){background:#4ade80;animation-delay:.44s}
+@keyframes dot{0%,80%,100%{transform:scale(.3);opacity:.3}40%{transform:scale(1);opacity:1}}
+.funny-status{font-size:9px;color:rgba(107,33,168,.4);letter-spacing:1.5px;margin-bottom:20px;display:block}
+.funny-close-btn{width:100%;padding:14px;border-radius:40px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid rgba(74,222,128,.3);font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#166534;cursor:pointer;transition:all .3s;margin-bottom:8px}
+.funny-close-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(74,222,128,.2)}
+.funny-back{width:100%;padding:10px;border-radius:40px;border:1px solid rgba(0,0,0,.08);background:transparent;font-family:'Outfit',sans-serif;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(0,0,0,.3);cursor:pointer;transition:all .3s}
+.funny-back:hover{color:rgba(0,0,0,.55)}
+@media(max-width:480px){#reminder-popup{padding:26px 20px 22px}}
 </style>
 </head>
 <body>
@@ -416,47 +333,40 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
 <canvas id="confetti-canvas"></canvas>
 
 <!-- ════════════════════════════
-     GOOGLE CALENDAR REMINDER POPUP
+     THANK YOU POPUP + FUNNY SCREEN
      Shows once per device on first visit
 ════════════════════════════ -->
 <div id="reminder-overlay" style="display:none">
   <div id="reminder-popup">
-    <div class="rp-handle"></div>
 
-    <!-- Default state -->
-    <div id="rp-default">
-      <span class="rp-icon">🌸</span>
-      <div class="rp-title"><em>Prathee's Baby Shower</em><br>is on April 12th!</div>
-      <div class="rp-sub">Add <strong>2 events</strong> to your Google Calendar — a reminder on April 10th &amp; the shower on April 12th. Both saved in one tap!</div>
-
-      <button class="rp-btn-gcal" onclick="addToCalendar()">
-        <span class="rp-btn-icon">📅</span>
-        <div class="rp-btn-text">
-          <span class="rp-btn-name">Add Both Events to Google Calendar</span>
-          <span class="rp-btn-desc">📅 Apr 10 reminder + 📅 Apr 12 shower · 2 tabs open</span>
-        </div>
-        <span class="rp-btn-arrow">→</span>
-      </button>
-
-      <button class="rp-skip" onclick="dismissReminder()">No thanks, I'll remember on my own 🙂</button>
+    <!-- ── Screen 1: Thank You ── -->
+    <div id="ty-screen">
+      <span class="ty-confetti">🌸 ✨ 🌸 ✨ 🌸</span>
+      <span class="ty-main-icon">💜</span>
+      <div class="ty-title">Thank you for celebrating with us!</div>
+      <div class="ty-msg">"Your love and blessings made this day truly unforgettable. We are so grateful you were a part of this beautiful chapter."</div>
+      <span class="ty-sign">— Pratheepa &amp; Prem 🌸</span>
+      <button class="ty-memories-btn" onclick="showFunny()">Relive the memories 📸</button>
+      <button class="ty-close-btn" onclick="closeTY()">Close</button>
     </div>
 
-    <!-- Success state -->
-    <div id="rp-success">
-      <span class="rps-icon">🎉</span>
-      <div class="rps-title">You're all set!</div>
-      <div class="rps-msg">
-        <strong>2 Google Calendar tabs are opening!</strong><br><br>
-        In each tab, just tap <strong>Save</strong> to add the event.<br><br>
-        <span style="display:inline-block;background:#f0fdf4;border:1px solid rgba(74,222,128,.3);border-radius:10px;padding:10px 13px;margin-top:4px;font-size:11px;color:#166534;line-height:1.9;text-align:left;width:100%">
-          🔔 <strong>Tab 1 — April 10, 9:00 AM</strong><br>
-          &nbsp;&nbsp;&nbsp;Reminder: Prathee's Baby Shower in 2 days!<br>
-          📅 <strong>Tab 2 — April 12, 10:30 AM</strong><br>
-          &nbsp;&nbsp;&nbsp;Prathee's Baby Shower at Miththam 🌸
-        </span>
+    <!-- ── Screen 2: Funny "Coming Very Soon™" ── -->
+    <div id="funny-screen">
+      <span class="funny-main-icon">🌸</span>
+      <div class="funny-title">Coming Very Soon™</div>
+      <div class="funny-msg">
+        Our official photographer is<br>
+        <em>"editing as we speak."</em><br><br>
+        (He said that 3 days ago.)<br>
+        (We believe him anyway.)<br><br>
+        In the meantime, please enjoy<br>this loading animation:
       </div>
-      <button class="rps-close" onclick="closeReminder()">Continue to invitation →</button>
+      <div class="funny-dots"><span></span><span></span><span></span></div>
+      <span class="funny-status">Still going... 🌿</span>
+      <button class="funny-close-btn" onclick="closeTY()">Worth the wait! 🤣</button>
+      <button class="funny-back" onclick="showTY()">← Back</button>
     </div>
+
   </div>
 </div>
 
@@ -543,7 +453,7 @@ footer em{font-style:normal;color:rgba(160,70,30,.75)}
 <section id="sco">
   <div class="deco" style="top:16px;right:18px;--d:8s;--tx:-5px;--ty:-10px;--r:-8deg;--sz:26px">🌿</div>
   <div class="deco" style="bottom:16px;left:16px;--d:10s;--tx:4px;--ty:-8px;--r:7deg;--sz:22px">🍃</div>
-  <div class="co-eye rv">✦ &nbsp; Tiny Feet's day is approaching &nbsp; ✦</div>
+  <div class="co-eye rv">✦ &nbsp; The big day is approaching &nbsp; ✦</div>
   <div class="co-row rv" style="transition-delay:.2s">
     <div class="co-box"><span class="co-n" id="cd">--</span><span class="co-l">Days</span></div>
     <div class="co-box"><span class="co-n" id="ch">--</span><span class="co-l">Hours</span></div>
@@ -982,84 +892,30 @@ function launchConfetti(){
   })();
 }
 
-/* ══ GOOGLE CALENDAR REMINDER POPUP ══ */
-(function initReminder(){
-  // Only show if not already seen on this device
-  if(localStorage.getItem('rsvp_reminder_seen')) return;
-  // Small delay so the hero animation plays first
+/* ══ THANK YOU POPUP ══ */
+(function initTY(){
+  if(localStorage.getItem('ty_popup_seen')) return;
   setTimeout(function(){
-    document.getElementById('reminder-overlay').style.display='flex';
+    document.getElementById('reminder-overlay').style.display = 'flex';
   }, 1800);
 })();
 
-function addToCalendar(){
-  /* ─────────────────────────────────────────────────────
-   * Opens TWO Google Calendar tabs simultaneously
-   * (both window.open calls are synchronous in the same
-   *  user-click handler, so popup blockers allow them)
-   *
-   * Event 1: April 10 — Reminder "2 Days to Go!"
-   * Event 2: April 12 — The actual Baby Shower
-   * ───────────────────────────────────────────────────── */
-
-  /* ── APRIL 10 REMINDER EVENT ── */
-  // 9:00 AM IST = 03:30 UTC  |  9:30 AM IST = 04:00 UTC
-  var r_title = encodeURIComponent("\uD83D\uDD14 Prathee\u2019s Baby Shower \u2014 2 Days to Go!");
-  var r_desc  = encodeURIComponent(
-    "Prathee\u2019s Baby Shower is this Sunday, April 12!\n\n" +
-    "\uD83D\uDCC5 April 12, 2026 \u00B7 10:30 AM \u2013 12:00 PM\n" +
-    "\uD83D\uDCCD Miththam, Thiruvidanthai, ECR, Chennai 603112\n\n" +
-    "Get ready to celebrate! \uD83C\uDF38"
-  );
-  var r_url = "https://calendar.google.com/calendar/render?action=TEMPLATE"
-    + "&text="    + r_title
-    + "&dates="   + "20260410T033000Z/20260410T040000Z"
-    + "&details=" + r_desc;
-
-  /* ── APRIL 12 ACTUAL EVENT ── */
-  // 10:30 AM IST = 05:00 UTC  |  12:00 PM IST = 06:30 UTC
-  var e_title = encodeURIComponent("Prathee\u2019s Baby Shower \uD83C\uDF38");
-  var e_loc   = encodeURIComponent("Miththam, Near Nithya Kalyana Perumal Temple, Thiruvidanthai, ECR, Chennai 603112");
-  var e_desc  = encodeURIComponent(
-    "You are warmly invited to Prathee\u2019s Baby Shower!\n\n" +
-    "\uD83D\uDCC5 Sunday, April 12, 2026\n" +
-    "\u23F0 10:30 AM \u2013 12:00 PM\n" +
-    "\uD83D\uDCCD Miththam, Near Nithya Kalyana Perumal Temple,\n" +
-    "    Thiruvidanthai, ECR, Chennai 603112\n\n" +
-    "Come celebrate this beautiful new chapter with love! \uD83C\uDF38"
-  );
-  var e_url = "https://calendar.google.com/calendar/render?action=TEMPLATE"
-    + "&text="     + e_title
-    + "&dates="    + "20260412T050000Z/20260412T063000Z"
-    + "&location=" + e_loc
-    + "&details="  + e_desc
-    + "&ctz="      + encodeURIComponent("Asia/Kolkata");
-
-  /* ── Open both tabs simultaneously ── */
-  /* Both are synchronous in the same click handler — popup blocker allows this */
-  window.open(r_url, '_blank');
-  window.open(e_url, '_blank');
-
-  /* ── Show success in popup ── */
-  document.getElementById('rp-default').style.display = 'none';
-  document.getElementById('rp-success').style.display  = 'block';
-  localStorage.setItem('rsvp_reminder_seen', '1');
-}
-function dismissReminder(){
-  localStorage.setItem('rsvp_reminder_seen', '1');
-  closeReminder();
+function showFunny(){
+  document.getElementById('ty-screen').style.display    = 'none';
+  document.getElementById('funny-screen').style.display = 'block';
 }
 
-function closeReminder(){
+function showTY(){
+  document.getElementById('funny-screen').style.display = 'none';
+  document.getElementById('ty-screen').style.display    = 'block';
+}
+
+function closeTY(){
+  localStorage.setItem('ty_popup_seen', '1');
   var overlay = document.getElementById('reminder-overlay');
   overlay.style.animation = 'overlayIn .3s ease reverse';
-  setTimeout(function(){
-    overlay.style.display = 'none';
-    // Reset for next preview (remove this line in production if you want)
-    // localStorage.removeItem('rsvp_reminder_seen');
-  }, 280);
+  setTimeout(function(){ overlay.style.display = 'none'; }, 280);
 }
-
 </script>
 </body>
 </html>
